@@ -34,10 +34,16 @@ class ShopCategoriesController extends Controller
         $ShopCategory = ShopCategory::findOrFail($id);
         $name = $ShopCategory->category_name;
         if ($ShopCategory->products()->exists()) {
-            return redirect()->back()->with('error', "Không thể xoá Danh mục <strong style='color:red'>$name</strong> này vì tồn tại sản phẩm");
+            return response()->json([
+                'status' => 'error',
+                'message' => "Không thể xoá danh mục <strong style='color:red'>$name</strong> vì có sản phẩm liên quan."
+            ], 400);
         }
         $ShopCategory->delete();
-        flash()->addSuccess("Xoá danh mục <strong style='color:red'>$name</strong> thành công");
+        return response()->json([
+            'status' => 'success',
+            'message' => "Xoá danh mục <strong style='color:red'>$name</strong> thành công."
+        ]);
         return redirect()->route('backend.shop_category.index');
     }
 

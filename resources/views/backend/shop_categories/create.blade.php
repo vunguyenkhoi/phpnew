@@ -9,7 +9,6 @@ Thêm mới Danh mục
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between bg-galaxy-transparent">
             <h4 class="mb-sm-0">thêm mới Danh mục</h4>
-
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="{{route('backend.shop_category.index')}}">Danh sách</a>
@@ -17,11 +16,9 @@ Thêm mới Danh mục
                     <li class="breadcrumb-item active">Thêm mới</li>
                 </ol>
             </div>
-
         </div>
     </div>
 </div>
-
 <div class="card">
     <div class="card-header align-items-center d-flex">
         <h4 class="card-title mb-0 flex-grow-1">Thêm mới dữ liệu</h4>
@@ -66,7 +63,6 @@ Thêm mới Danh mục
                 <a href="{{route('backend.shop_category.index')}}" class="btn btn-info waves-effect waves-light">Quay
                     về</a>
             </div>
-
         </form>
     </div>
 </div>

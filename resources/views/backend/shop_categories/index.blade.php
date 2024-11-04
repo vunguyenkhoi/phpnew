@@ -83,7 +83,7 @@ Danh sách cấu hình
                                                     <a href="{{route('backend.shop_category.edit',['id'=> $item->id])}}"
                                                         class="btn btn-sm btn-success edit-item-btn">Sửa</a>
                                                 </div>
-                                                <form
+                                                {{-- <form
                                                     action="{{route('backend.shop_category.destroy',['id'=> $item->id])}}"
                                                     method="POST">
                                                     @csrf @method('delete')
@@ -91,7 +91,10 @@ Danh sách cấu hình
                                                         <button
                                                             class="btn btn-sm btn-danger remove-item-btn btn-delete">Xoá</button>
                                                     </div>
-                                                </form>
+                                                </form> --}}
+                                                <button type="button" id="sa-warning"
+                                                    class="btn btn-danger btn-sm  btn-delete" data-id="{{ $item->id }}"
+                                                    data-delete-url="{{ route('backend.shop_category.destroy', ['id' => $item->id]) }}">Xoá</button>
                                             </div>
                                         </td>
                                     </tr>
@@ -113,7 +116,96 @@ Danh sách cấu hình
     <!-- end col -->
 </div>
 </div>
-{{-- sjandjksnadks --}}
+@endsection
+@section('custom-js')
+<script>
+    // $('.btn-delete').on('click', function() {
+    //         var id = $(this).attr("data-id");
+    //         var deleteURL = $(this).attr("data-delete-url");
+    //         var btnDelete = $(this);
+    //         Swal.fire({
+    //             title: "Are you sure?",
+    //             text: "You won't be able to revert this!",
+    //             icon: "warning",
+    //             showCancelButton: true,
+    //             confirmButtonColor: "#3085d6",
+    //             cancelButtonColor: "#d33",
+    //             confirmButtonText: "Yes, delete it!"
+    //         }).then((result) => {
+                
+    //             if (result.isConfirmed) {
+    //                 var postData = {
+    //                     '_token': '{{ csrf_token() }}',
+    //                     '_method': 'DELETE',
+    //                     'id': id
+    //                 }
+    //                 // Swal.fire({
+    //                 //     title: "Deleted!",
+    //                 //     text: "Your file has been deleted.",
+    //                 //     icon: "success"
+    //                 //     });
+    //                 $.post(deleteURL, postData)
+    //                 .done(function(response) {
+    //                     btnDelete.closest('tr').remove();
+    //                 }).fail(function(e) {
+    //                         alert('error')
+    //                     })
+                        
+    //             }
+    //         });
+    //     })
+
+    $('.btn-delete').on('click', function() {
+        var id = $(this).attr("data-id");
+        var deleteURL = $(this).attr("data-delete-url");
+        var btnDelete = $(this);
+
+        Swal.fire({
+            title: "Bạn có chắc chắn muốn xoá dữ liệu này?",
+            text: "Sau khi xoá sẽ không thể khôi phục",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Xoá"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var postData = {
+                    '_token': '{{ csrf_token() }}',
+                    '_method': 'DELETE',
+                    'id': id
+                };
+
+                $.post(deleteURL, postData)
+                    .done(function(response) {
+                        if (response.status === 'success') {
+                            // Xoá hàng chứa nút xóa sau khi xóa thành công
+                            btnDelete.closest('tr').remove();
+                            Swal.fire({
+                                title: "Xoá",
+                                html: response.message,
+                                icon: "success"
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Lỗi!",
+                                text: response.message,
+                                icon: "error"
+                            });
+                        }
+                    })
+                    .fail(function(response) {
+                        var message = response.responseJSON ? response.responseJSON.message : "Có lỗi xảy ra";                       
+                            Swal.fire({
+                                title: "Lỗi!",
+                                html: message,
+                                icon: "error"
+                            });
+                    });
+            }
+        });
+    });
 
 
+</script>
 @endsection

@@ -55,7 +55,6 @@ Cập nhật Danh mục
                         <img class="avatar-xl  rounded-circle img-fluid mb-3 "
                             src="{{ asset('uploads/shop_categories/' . $ShopCategory->image) }}"
                             alt="{{$ShopCategory->category_name}}">
-
                         <input class=" form-control" type="file" id="image" name="image">
                     </div>
                 </div>

@@ -32,7 +32,7 @@ class ShopSettingController extends Controller
         $ShopSetting = ShopSetting::findOrFail($id);
         $name = $ShopSetting->group;
         $ShopSetting->delete();
-        flash()->addSuccess("Xoá cấu hình <strong style='color:red'>$name</strong> thành công");
+        // flash()->addSuccess("Xoá cấu hình <strong style='color:red'>$name</strong> thành công");
         return redirect()->route('backend.shop_setting.index');
     }
 
@@ -59,6 +59,6 @@ class ShopSettingController extends Controller
         $ShopSetting->updated_at = Carbon::now();
         $ShopSetting->save();
         flash()->addSuccess("Cập nhật cấu hình <strong style='color:red'>$ShopSetting->group</strong> thành công");
-        return redirect()->route('backend.shop_setting.index');
+        return redirect()->route('backend.shop_category.index');
     }
 }

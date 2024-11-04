@@ -10,17 +10,24 @@
     <meta content="Shop bán hàng" name="keywords" />
     <meta content="Shop bán hàng" name="Shop bán hàng" />
     <!--Custom CSS-->
+    {{--
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet"> --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&display=swap"
         rel="stylesheet">
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}" />
     <!-- Sweet Alert css-->
     <link href="{{asset('assets/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{asset('assets/css/style.css')}}" rel="stylesheet" type="text/css" />
+    {{--
+    <link href="{{asset('assets/css/style.css')}}" rel="stylesheet" type="text/css" /> --}}
     <!-- jsvectormap css -->
     <link href="{{asset('assets/libs/jsvectormap/css/jsvectormap.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/libs/swiper/swiper-bundle.min.css')}}" rel="stylesheet" type="text/css" />
@@ -92,9 +99,14 @@
     <script src="{{asset('assets/libs/swiper/swiper-bundle.min.js')}}"></script>
     <!-- Dashboard init -->
     <script src="{{asset('assets/js/pages/dashboard-ecommerce.init.js')}}"></script>
+    <!--JqueryValidation-->
+    <script src="{{asset('assets/libs/jquery-validation/dist/jquery.validate.min.js')}}"></script>
+    <script src="{{asset('assets/libs/jquery-validation/dist/localization/messages_vi.min.js')}}"></script>
     <!-- App js -->
     <script src="{{asset('assets/js/app.js')}}"></script>
+
     @yield('custom-js')
+
 </body>
 
 
