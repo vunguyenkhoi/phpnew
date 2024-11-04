@@ -18,7 +18,7 @@ return Configuration::from([
 
     // Set global options for all notifications (optional)
     'options' => [
-        'timeout' => 3000, // Time in milliseconds before the notification disappears
+        'timeout' => 2000, // Time in milliseconds before the notification disappears
         'position' => 'top-center', // Where the notification appears on the screen
     ],
 

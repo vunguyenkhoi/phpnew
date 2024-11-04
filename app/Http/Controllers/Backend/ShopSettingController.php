@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ShopSetting;
 use Carbon\Carbon;
+use Nette\Utils\Validators;
+use Validator;
 
 class ShopSettingController extends Controller
 {
@@ -32,12 +34,41 @@ class ShopSettingController extends Controller
         $ShopSetting = ShopSetting::findOrFail($id);
         $name = $ShopSetting->group;
         $ShopSetting->delete();
-        // flash()->addSuccess("Xoá cấu hình <strong style='color:red'>$name</strong> thành công");
+        flash()->addSuccess("Xoá cấu hình <strong style='color:red'>$name</strong> thành công");
         return redirect()->route('backend.shop_setting.index');
     }
 
     public function store(Request $request)
     {
+        $validator =  Validator::make(
+            $request->all(),
+            [
+                'group' => 'required|min:3|max:50',
+                'key' => 'required|min:3|max:50',
+                'value' => 'required|min:3|max:50',
+                'description' => 'required|min:3|max:1000'
+            ],
+            [
+                'group.required' => 'Tên nhóm bắt buộc nhập',
+                'group.min' => 'Tên nhóm phải từ 3 ký tự trở lên',
+                'group.max' => 'Tên nhóm không vuuợt quá 50 ký tự',
+                'key.required' => 'Tên Khoá bắt buộc nhập',
+                'key.min' => 'Khoá phải từ 3 ký tự trở lên',
+                'key.max' => 'Khoá không vuợt quá 50 ký tự',
+                'value.required' => 'Giá trị bắt buộc phải nhập',
+                'value.min' => 'Giá trị phải từ 3 ký tự',
+                'value.max' => 'Giá trị không vượt quá 50 ký tự',
+                'description.required' => 'Mô tả bắt buộc nhập',
+                'description.min' => 'Mô tả phải từ 3 ký tự',
+                'description.max' => 'Mô tả không vượt quá 1000 ký tự'
+            ]
+        );
+
+        //Kiểm tra logic,nếu đúg thì lưu, k thì chuyển hướng
+        if ($validator->fails()) {
+            return redirect()->route('backend.shop_setting.create')->withErrors($validator)->withInput();
+        }
+
         $ShopSetting = new ShopSetting();
         $ShopSetting->group = $request->group;
         $ShopSetting->key = $request->key;
@@ -59,6 +90,6 @@ class ShopSettingController extends Controller
         $ShopSetting->updated_at = Carbon::now();
         $ShopSetting->save();
         flash()->addSuccess("Cập nhật cấu hình <strong style='color:red'>$ShopSetting->group</strong> thành công");
-        return redirect()->route('backend.shop_category.index');
+        return redirect()->route('backend.shop_setting.index');
     }
 }
