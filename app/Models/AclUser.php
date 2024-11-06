@@ -8,9 +8,10 @@ use App\Models\AclUserHasRole;
 use App\Models\AclRoleHasPermission;
 use App\Models\AclUserHasPermision;
 use App\Models\ShopPost;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
-class AclUser extends Model
+class AclUser extends Authenticatable
 {
     use HasFactory;
     protected $table = 'acl_users';
@@ -66,5 +67,79 @@ class AclUser extends Model
     public function posts()
     {
         return $this->hasMany(ShopPost::class, 'user_id', 'id');
+    }
+    /**
+     * Tên cột 'Ghi nhớ đăng nhập'
+     * The column name of the "remember me" token.
+     *
+     * @var string
+     */
+    protected $rememberTokenName = 'remember_token';
+    /**
+     * Get the name of the unique identifier for the user.
+     *
+     * @return string
+     */
+    public function getAuthIdentifierName()
+    {
+        return $this->getKeyName();
+    }
+    /**
+     * Get the unique identifier for the user.
+     *
+     * @return mixed
+     */
+    public function getAuthIdentifier()
+    {
+        return $this->{$this->getAuthIdentifierName()};
+    }
+    /**
+     * Hàm trả về tên cột dùng để tim `Mật khẩu`
+     * Get the password for the user.
+     *
+     * @return string
+     */
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
+    /**
+     * Hàm dùng để trả về giá trị của cột "nv_ghinhodangnhap" session.
+     * Get the token value for the "remember me" session.
+     *
+     * @return string|null
+     */
+    public function getRememberToken()
+    {
+        if (! empty($this->getRememberTokenName())) {
+            return (string) $this->{$this->getRememberTokenName()};
+        }
+    }
+    /**
+     * Hàm dùng để set giá trị cho cột "nv_ghinhodangnhap" session.
+     * Set the token value for the "remember me" session.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setRememberToken($value)
+    {
+        if (! empty($this->getRememberTokenName())) {
+            $this->{$this->getRememberTokenName()} = $value;
+        }
+    }
+    /**
+     * Hàm trả về tên cột dùng để chứa REMEMBER TOKEN
+     * Get the column name for the "remember me" token.
+     *
+     * @return string
+     */
+    public function getRememberTokenName()
+    {
+        return $this->rememberTokenName;
+    }
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
     }
 }

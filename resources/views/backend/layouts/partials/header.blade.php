@@ -12,7 +12,6 @@
                             <img src="{{asset('assets/images/logo-dark.png')}}" alt="" height="30" />
                         </span>
                     </a>
-
                     <a href="index.html" class="logo logo-light">
                         <span class="logo-sm">
                             <img src="{{asset('assets/images/logo-sm.png')}}" alt="" height="22" />
@@ -66,7 +65,11 @@
                             <img class="rounded-circle header-profile-user"
                                 src="{{asset('assets/images/users/avatar-1.jpg')}}" alt="Header Avatar" />
                             <span class="text-start ms-xl-2">
-                                <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">Nguyên Huy</span>
+                                <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">
+                                    @auth
+                                    {{auth()->user()->last_name}}
+                                    @endauth
+                                </span>
                                 <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text">admin</span>
                             </span>
                         </span>
@@ -80,26 +83,23 @@
                         <a class="dropdown-item" href="apps-chat.html"><i
                                 class="mdi mdi-message-text-outline text-muted fs-16 align-middle me-1"></i>
                             <span class="align-middle">Messages</span></a>
-                        <a class="dropdown-item" href="apps-tasks-kanban.html"><i
-                                class="mdi mdi-calendar-check-outline text-muted fs-16 align-middle me-1"></i>
-                            <span class="align-middle">Taskboard</span></a>
-                        <a class="dropdown-item" href="pages-faqs.html"><i
-                                class="mdi mdi-lifebuoy text-muted fs-16 align-middle me-1"></i>
-                            <span class="align-middle">Help</span></a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="pages-profile.html"><i
-                                class="mdi mdi-wallet text-muted fs-16 align-middle me-1"></i>
-                            <span class="align-middle">Balance : <b>$5971.67</b></span></a>
-                        <a class="dropdown-item" href="pages-profile-settings.html"><span
-                                class="badge bg-success-subtle text-success mt-1 float-end">New</span><i
-                                class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i>
-                            <span class="align-middle">Settings</span></a>
-                        <a class="dropdown-item" href="auth-lockscreen-basic.html"><i
-                                class="mdi mdi-lock text-muted fs-16 align-middle me-1"></i>
-                            <span class="align-middle">Lock screen</span></a>
-                        <a class="dropdown-item" href="auth-logout-basic.html"><i
-                                class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>
-                            <span class="align-middle" data-key="t-logout">Logout</span></a>
+                        @auth
+                        <form method="POST" action="{{route('auth.login.logout')}}">
+                            @csrf
+                            <button type="submit" class="dropdown-item "><i
+                                    class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>Đăng xuất
+                            </button>
+                            {{-- <a type="submit" class="dropdown-item"><i
+                                    class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>
+                                <span class="align-middle" data-key="t-logout">Đăng xuất</span></a> --}}
+                        </form>
+                        @endauth
+                        {{-- @guest
+                        <h1 class="dropdown-item">Xin chào</h1>
+                        <a href="{{route('auth.login.index')}}">Đăng nhập</a>
+                        @endguest --}}
+
+
                     </div>
                 </div>
             </div>

@@ -3,21 +3,21 @@
     <div class="navbar-brand-box border-bottom bg-success  bg-opacity-10">
         <!-- Dark Logo-->
         <div class=" gap-2">
-            <a href="{{route('dashboard')}}" class="logo logo-dark">
+            <a href="{{ route('dashboard') }}" class="logo logo-dark">
                 <span class="logo-sm">
-                    <img src="{{asset('assets/images/logo-sm.png')}}" alt="" height="22" />
+                    <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22" />
                 </span>
                 <span class="logo-lg">
-                    <img src="{{asset('assets/images/logo-dark.png')}}" alt="" height="17" />
+                    <img src="{{ asset('assets/images/logo-dark.png') }}" alt="" height="17" />
                 </span>
             </a>
             <!-- Light Logo-->
-            <a href="{{route('dashboard')}}" class="logo logo-light">
+            <a href="{{ route('dashboard') }}" class="logo logo-light">
                 <span class="logo-sm">
-                    <img src="{{asset('assets/images/logo-sm.png')}}" alt="" height="22" />
+                    <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22" />
                 </span>
                 <span class="logo-lg">
-                    <img src="{{asset('assets/images/logo-light.png')}}" alt="" height="32" />
+                    <img src="{{ asset('assets/images/logo-light.png') }}" alt="" height="32" />
                 </span>
             </a>
 
@@ -31,7 +31,7 @@
         <button type="button" class="btn material-shadow-none" id="page-header-user-dropdown" data-bs-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             <span class="d-flex align-items-center gap-2">
-                <img class="rounded header-profile-user" src="{{asset('assets/images/users/avatar-1.jpg')}}"
+                <img class="rounded header-profile-user" src="{{ asset('assets/images/users/avatar-1.jpg') }}"
                     alt="Header Avatar" />
                 <span class="text-start">
                     <span class="d-block fw-medium sidebar-user-name-text">Hello user</span>
@@ -78,7 +78,7 @@
             <ul class="navbar-nav" id="navbar-nav">
                 <li class="menu-title"><span data-key="t-menu">Menu</span></li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{route('dashboard')}}" data-bs-toggle="
+                    <a class="nav-link menu-link" href="{{ route('dashboard') }}" data-bs-toggle="
                         collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
                         <i class="ri-dashboard-2-line"></i>
                         <span data-key="t-authentication">Dashboard</span>
@@ -91,13 +91,13 @@
                 <li class="nav-item ">
                     <a class="nav-link menu-link" href="#sidebarAuth" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarAuth">
-                        <i class="ri-account-circle-line"></i>
+                        <i class="ri-pages-line"></i>
                         <span data-key="t-authentication">Sản phẩm</span>
                     </a>
                     <div class="collapse menu-dropdown" id="sidebarAuth">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="{{route('backend.shop_category.index')}}" class="nav-link">
+                                <a href="{{ route('backend.shop_category.index') }}" class="nav-link">
                                     Danh mục sản phẩm
                                 </a>
                             </li>
@@ -111,133 +111,44 @@
                                     Danh sách Sản phẩm
                                 </a>
                             <li class="nav-item">
-                                <a href="{{route('backend.shop_setting.index')}}" class="nav-link">
+                                <a href="{{ route('backend.shop_setting.index') }}" class="nav-link">
                                     Danh sách Cấu hình
                                 </a>
-
-                        </ul>
-                    </div>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button"
-                        aria-expanded="false" aria-controls="sidebarPages">
-                        <i class="ri-pages-line"></i>
-                        <span data-key="t-pages">Quản lý Giáo Viên</span>
-                    </a>
-                    <div class="collapse menu-dropdown" id="sidebarPages">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a href="pages-starter.html" class="nav-link" data-key="t-starter">
-                                    Danh sách Giáo Viên
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#sidebarProfile" class="nav-link" data-bs-toggle="collapse" role="button"
-                                    aria-expanded="false" aria-controls="sidebarProfile" data-key="t-profile">
-                                    Profile
-                                </a>
-                                <div class="collapse menu-dropdown" id="sidebarProfile">
-                                    <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item">
-                                            <a href="pages-profile.html" class="nav-link" data-key="t-simple-page">
-                                                Simple Page
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="pages-profile-settings.html" class="nav-link"
-                                                data-key="t-settings">
-                                                Settings
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages-team.html" class="nav-link" data-key="t-team">
-                                    Team
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages-timeline.html" class="nav-link" data-key="t-timeline">
-                                    Timeline
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages-faqs.html" class="nav-link" data-key="t-faqs">
-                                    FAQs
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages-pricing.html" class="nav-link" data-key="t-pricing">
-                                    Pricing
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages-gallery.html" class="nav-link" data-key="t-gallery">
-                                    Gallery
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages-maintenance.html" class="nav-link" data-key="t-maintenance">
-                                    Maintenance
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages-coming-soon.html" class="nav-link" data-key="t-coming-soon">
-                                    Coming Soon
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages-sitemap.html" class="nav-link" data-key="t-sitemap">
-                                    Sitemap
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages-search-results.html" class="nav-link" data-key="t-search-results">
-                                    Search Results
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages-privacy-policy.html" class="nav-link" data-key="t-privacy-policy">Privacy
-                                    Policy</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages-term-conditions.html" class="nav-link" data-key="t-term-conditions">Term
-                                    & Conditions</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarLanding" data-bs-toggle="collapse" role="button"
-                        aria-expanded="false" aria-controls="sidebarLanding">
-                        <i class="ri-rocket-line"></i>
-                        <span data-key="t-landing">Quản lý điểm danh</span>
-                    </a>
-                    <div class="collapse menu-dropdown" id="sidebarLanding">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a href="landing.html" class="nav-link" data-key="t-one-page">
-                                    One Page
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="nft-landing.html" class="nav-link" data-key="t-nft-landing">
-                                    NFT Landing
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="job-landing.html" class="nav-link" data-key="t-job">Job</a>
-                            </li>
                         </ul>
                     </div>
                 </li>
 
                 <li class="menu-title">
                     <i class="ri-more-fill"></i>
-                    <span data-key="t-components">Components</span>
+                    <span data-key="t-components">học sinh và giáo viên</span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="sidebarPages">
+                        <i class="ri-account-circle-line"></i>
+
+                        <span data-key="t-pages">Quản lý Học sinh</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarPages">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-key="t-starter">
+                                    Danh sách Học sinh
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-key="t-team">
+                                    Danh sách Lớp
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-key="t-timeline">
+                                    Danh sách Giáo viên
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
                 </li>
 
             </ul>

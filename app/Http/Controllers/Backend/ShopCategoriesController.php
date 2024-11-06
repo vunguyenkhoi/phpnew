@@ -7,7 +7,7 @@ use App\Models\ShopCategory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-
+use Validator;
 
 class ShopCategoriesController extends Controller
 {
@@ -49,6 +49,32 @@ class ShopCategoriesController extends Controller
 
     public function store(Request $request)
     {
+        $validator =  Validator::make(
+            $request->all(),
+            [
+                'category_code' => 'required|min:3|max:50',
+                'category_name' => 'required|min:3|max:50',
+                'description' => 'required|min:3|max:50',
+                'image' => 'required|mimes:jpg,jpeg,png,gif,avif'
+            ],
+            [
+                'category_code.required' => 'Mã danh mục bắt buộc nhập',
+                'category_code.min' => 'Mã danh mục phải từ 3 ký tự trở lên',
+                'category_code.max' => 'Mã danh mục không vuuợt quá 50 ký tự',
+                'category_name.required' => 'Tên danh mục bắt buộc nhập',
+                'category_name.min' => 'Tên danh mục phải từ 3 ký tự trở lên',
+                'category_namey.max' => 'Tên danh mục không vuợt quá 50 ký tự',
+                'description.required' => 'Mô tả bắt buộc phải nhập',
+                'description.min' => 'Mô tả phải từ 3 ký tự',
+                'description.max' => 'Mô tả không vượt quá 50 ký tự',
+                'image.required' => 'Hình ảnh không được để trống',
+                'image.mimes' => 'Hình ảnh không đúng định dạng',
+
+            ]
+        );
+        if ($validator->fails()) {
+            return redirect()->route('backend.shop_category.create')->withErrors($validator)->withInput();
+        }
         $ShopCategory = new ShopCategory();
         $ShopCategory->category_code = $request->category_code;
         $ShopCategory->category_name = $request->category_name;

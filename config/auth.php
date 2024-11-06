@@ -60,10 +60,17 @@ return [
     */
 
     'providers' => [
+        // 'users' => [
+        //     'driver' => 'eloquent',
+        //     'model' => env('AUTH_MODEL', App\Models\AUser::class),
+        // ],
+
+        //Sử dụng model của mình(AclUser)
         'users' => [
-            'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+            'driver' => 'custom',
+            'model' =>  App\Models\AclUser::class,
         ],
+
 
         // 'users' => [
         //     'driver' => 'database',
